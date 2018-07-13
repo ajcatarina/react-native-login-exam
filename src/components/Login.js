@@ -9,7 +9,7 @@ class Login extends React.Component {
             email: '', 
             password: '',
             signInDisabled: false,
-            showLogo: 'flex',
+            showLogo: true,
             emailError: 'no email error',
             passwordError: 'no password error',
         }
@@ -17,8 +17,8 @@ class Login extends React.Component {
     }
 
     componentDidMount() {
-        this.keyboardWillShowListener = Keyboard.addListener('keyboardWillShow', this._keyboardWillShow)
-        this.keyboardWillHideListener = Keyboard.addListener('keyboardWillHide', this._keyboardWillHide)
+        this.keyboardDidShowListener = Keyboard.addListener('keyboardDidShow', this._keyboardDidShow)
+        this.keyboardDidHideListener = Keyboard.addListener('keyboardDidHide', this._keyboardDidHide)
     }
 
     componentWillUnmount() {
@@ -26,12 +26,12 @@ class Login extends React.Component {
         this.keyboadDidHideListener.remove()
     }
 
-    _keyboardWillShow = () => {
-        this.setState({showLogo: 'none'})
+    _keyboardDidShow = () => {
+        this.setState({showLogo: false})
     }
 
-    _keyboardWillHide = () => {
-        this.setState({showLogo: 'flex'})
+    _keyboardDidHide = () => {
+        this.setState({showLogo: true})
     }
 
     _focusNextField = (id) => {
@@ -48,7 +48,7 @@ class Login extends React.Component {
                 <View style={styles.containerCenter}>
                     <Image 
                         source={require('../../assets/logo.png')}
-                        style={{display: this.state.showLogo}}
+                        style={this.state.showLogo ? '' : {height: 0 }}
                     />
                 </View>
                 <KeyboardAvoidingView style={styles.form} behavior='padding' keyboardVerticalOffset={20}>
@@ -79,15 +79,17 @@ class Login extends React.Component {
                         selectionColor='#6F51A1'
                         style={styles.input}
                     />
-                    <Text style={styles.errorMessage}>{this.state.emailError}</Text>
+                    <Text style={styles.errorMessage}>{this.state.passwordError}</Text>
+                    <View style={{height: 20}}/>
                     <TouchableOpacity 
                         onPress={this._onSignIn} 
                         disabled={this.state.signInDisabled}
                         style={styles.button}
                     >
-                    <Text style={styles.buttonText}>Sign In</Text>
+                        <Text style={styles.buttonText}>Sign In</Text>
                     </TouchableOpacity>
                 </KeyboardAvoidingView>
+                <View style={{height: 30}}/>
             </View>
         )
     }
@@ -104,8 +106,8 @@ const styles = StyleSheet.create({
         alignItems: 'center',
     },
     form: {
-        padding: 10,
         flex: 1,
+        padding: 10,
         justifyContent: 'space-between',
     },
     label: {
@@ -114,6 +116,7 @@ const styles = StyleSheet.create({
     input: {
         padding: 10,
         fontSize: 18,
+        fontStyle: 'italic',
         borderWidth: 1,
         borderRadius: 5,
         borderColor: '#6F51A1',
