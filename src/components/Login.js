@@ -103,13 +103,11 @@ class Login extends React.Component {
         return (
             <View style={styles.container}>
                 <View style={this.state.showLogo ? styles.logo : {flex: 0}}>
-                    <View>
                     <Image 
                         source={require('../../assets/logo.png')}
                         style={this.state.showLogo ? '' : {height: 0}}
                         resizeMode='contain'
                     />
-                    </View>
                 </View>
                 <KeyboardAvoidingView style={styles.form} behavior='padding'>
                     <View>
@@ -171,7 +169,7 @@ class Login extends React.Component {
                 <View style={{height: 40}}/>
             </View>
         )
-    }
+    } 
 }
 
 const styles = StyleSheet.create({
@@ -183,7 +181,7 @@ const styles = StyleSheet.create({
         flex: 1,
         justifyContent: 'center',
         alignItems: 'center',
-        padding: 60,
+        padding: 30,
     },
     form: {
         flex: 1,
