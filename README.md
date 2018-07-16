@@ -1,7 +1,13 @@
 # React Native Login Exam
 A React Native login screen built with Expo XDE
 
+Test by logging in with these user accounts:
+- email: 'bananaman_18@vananaz.com', password: 'vananaz12345'
+- email: 'ajcatarina@vananaz.com', password: 'hireme'
+
 <img src="https://cdn.pbrd.co/images/HuHtQ54.png" width="200px"/>
+
+
 
 ## Dependencies
 - [validate.js](https://www.npmjs.com/package/validate.js) - straightforward, declarative way of JavaScript validation
